@@ -5,4 +5,5 @@ export class User {
     public LastName: string; // varying(50) nullable
     public RoleId: number;
     public Token: string;
+    public LastLoggedAt: Date;
 }

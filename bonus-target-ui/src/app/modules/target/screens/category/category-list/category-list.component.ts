@@ -23,7 +23,6 @@ export class CategoryListComponent extends ListScreenBase<Category> implements O
 
     ngOnInit(): void {
         this.tableColumnDefinitions = [
-            { field: 'Id', header: 'Id', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'int' },
             { field: 'Title', header: 'Title', filter: { type: 'text', matchMode: 'contains', placeholder: 'contains' }, type: 'text' },
             { field: 'ParentId', header: 'Parent', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'parent' },
         ];

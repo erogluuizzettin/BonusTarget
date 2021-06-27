@@ -1,7 +1,19 @@
-<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/">Home</a>
-      <a *ngIf="authenticationService.userName" class="nav-item nav-link"><button (click)="logout()">Logout</button></a>
+<div class="row">
+  <div class="d-none d-md-block col-md-10">
+    <h3>Bonus Target Application</h3>
   </div>
-</nav>
+  <div *ngIf="authenticationService.userName" class="col-xs-12 col-md-2">
+    <p-button #userIcon icon="pi pi-user" (click)="op.toggle($event)"></p-button>
+    <p-overlayPanel #op appendTo="body" [style]="{width: '225px'}">
+      <ng-template pTemplate>
+        <div class="col-12">
+          {{ authenticationService.userName }}
+        </div>
+        <br>
+        <div class="col-12">
+          <p-button icon="pi pi-sign-out" label="Logout" (click)="logout()"></p-button>
+        </div>
+      </ng-template>
+    </p-overlayPanel>
+  </div>
+</div>

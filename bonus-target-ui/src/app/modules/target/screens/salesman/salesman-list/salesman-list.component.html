@@ -5,7 +5,7 @@
     <div class="p-col-12">
         <div class="card card-w-title">
             <p-table #dt [columns]="tableColumnDefinitions" [value]="dataService.completeList" [paginator]="true"
-                [rows]="10" dataKey="Id" [scrollable]="true" [loading]="dataService.loading">
+                [rows]="5" dataKey="Id" [scrollable]="true" [loading]="dataService.loading">
                 <ng-template pTemplate="caption"> Salesman List
                     <div class="p-table-globalfilter-container">
                         <input type="text" pInputText size="50" placeholder="Genel Filtre"

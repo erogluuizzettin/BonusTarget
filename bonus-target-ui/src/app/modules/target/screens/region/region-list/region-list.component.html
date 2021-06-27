@@ -5,7 +5,7 @@
     <div class="p-col-12">
         <div class="card card-w-title">
             <p-table #dt [columns]="tableColumnDefinitions" [value]="dataService.completeList" [paginator]="true"
-                [rows]="10" dataKey="id" [scrollable]="true" [loading]="dataService.loading">
+                [rows]="5" dataKey="id" [scrollable]="true" [loading]="dataService.loading">
                 <ng-template pTemplate="caption"> Region List
                     <div class="p-table-globalfilter-container">
                         <input type="text" pInputText size="50" placeholder="Genel Filtre"
@@ -18,14 +18,14 @@
                 </ng-template>
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th style="width: 65px;"></th>
+                        <th style="width: 35px;"></th>
                         <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="width:140px">
                             {{col.header}}
                             <p-sortIcon [field]="col.field"></p-sortIcon>
                         </th>
                     </tr>
                     <tr>
-                        <th style="width: 65px;">
+                        <th style="width: 35px;">
                             <button type="button" pButton class="p-button-primary" (click)="openEditForm(null, 'Create')">Add</button>
                         </th>
                         <th *ngFor="let col of columns" [ngSwitch]="col.filter.type" style="padding: .5em;">
@@ -44,7 +44,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
                     <tr>
-                        <td style="width: 65px;">
+                        <td style="width: 35px;">
                             <button type="button" pButton class="p-button-danger" style="margin-right: 5px;" (click)="openEditForm(rowData, 'Delete')">Remove</button>
                             <button type="button" pButton class="p-button-secondary" (click)="openEditForm(rowData, 'Update')">Edit</button>
                         </td>

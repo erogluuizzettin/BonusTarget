@@ -263,7 +263,7 @@ export class BackendHttpInterceptor implements HttpInterceptor {
     else if (request.method === 'POST') {
       if (request.url === "/users/authenticate") {
         if (['cem.ertem', 'aaktas', 'erogluuizzettin'].includes(request.body['username'])) {
-          return of(new HttpResponse({ status: 200, body: { username: request.body['username'], firstName: request.body['firstname'], lastname: request.body['lastname'], token: request.body['username'] } }));
+          return of(new HttpResponse({ status: 200, body: { username: request.body['username'], firstname: request.body['username'], lastname: request.body['username'], token: request.body['username'] } }));
         }
         return throwError('Username or password is incorrect');
       }

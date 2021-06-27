@@ -22,7 +22,7 @@ export class RegionListComponent extends ListScreenBase<Region> implements OnIni
 
   ngOnInit(): void {
     this.tableColumnDefinitions = [
-      { field: 'Id', header: 'Id', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'int' },
+      // { field: 'Id', header: 'Id', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'int' },
       { field: 'Title', header: 'Title', filter: { type: 'text', matchMode: 'contains', placeholder: 'contains' }, type: 'text' },
       { field: 'ParentId', header: 'Parent', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'parent' },
     ];

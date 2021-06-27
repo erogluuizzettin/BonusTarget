@@ -1,19 +1,19 @@
-<div [class]="styleClass"
-    [ngStyle]="style">
-    <div class="p-menubar-start" *ngIf="startTemplate">
-        <ng-container *ngTemplateOutlet="startTemplate"></ng-container>
+<div class="row">
+    <!-- <div class="col-md-10 text-center">
+        <img href="#" src="../../../assets/bonus_target_logo.png" height="80px" alt="bonus target logo">
+    </div> -->
+    <div class="col-md-12" style="text-align: right; padding-right: 20px;font-size: 30px;">
+        <em class="fa fa-bars" (click)="menuOpen()"></em>
     </div>
-    <a #menubutton tabindex="0" class="p-menubar-button" (click)="toggle($event)">
-        <i class="pi pi-bars"></i>
-    </a>
-    <bns-menu-item #rootmenu [item]="model" [root]="true" [baseZIndex]="baseZIndex" (leafClick)="onLeafClick()"
-        [autoZIndex]="autoZIndex" [mobileActive]="mobileActive" [autoDisplay]="autoDisplay"></bns-menu-item>
-    <div class="p-menubar-end" *ngIf="endTemplate; else legacy">
-        <ng-container *ngTemplateOutlet="endTemplate"></ng-container>
-    </div>
-    <ng-template #legacy>
-        <div class="p-menubar-end">
-            <ng-content></ng-content>
+    <hr>
+    <div class="col-md-12">
+        <div class="row menu-item" *ngFor="let item of menuList">
+            <div class="col-3" style="margin-left: 15px;">
+                <em [class]="item.icon"></em>
+            </div>
+            <div *ngIf="isMenuOpen" class="col-7 menu-item-title" (click)="menuClick(item.targetUrl)">
+                {{ item.title }}
+            </div>
         </div>
-    </ng-template>
+    </div>
 </div>

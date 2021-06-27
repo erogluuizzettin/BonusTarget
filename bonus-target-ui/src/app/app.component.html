@@ -1,5 +1,5 @@
-<div>
-    <bns-menu class="menu"></bns-menu>
+<div [ngClass]="{'layout-menu-close':!menu.isMenuOpen }">
+    <bns-menu #menu class="left-sidebar"></bns-menu>
 
     <div class="layout-main">
         <bns-header class="header"></bns-header>
@@ -9,24 +9,3 @@
         </div>
     </div>
 </div>
-
-<!-- <div class="layout-wrapper"
-    [ngClass]="{'layout-horizontal': horizontalMenu,           
-                'layout-wrapper-static': staticMenuActive,                
-                'layout-rightpanel-active': rightPanelActive,                
-                'layout-topbar-mobile-active': topbarMobileMenuActive,                
-                'layout-sidebar-mobile-active': menuMobileActive}"
-    [class]="menuColor">
-    <app-menu></app-menu>
-    <div class="layout-main">
-        <app-topbar></app-topbar>
-        <app-rightpanel></app-rightpanel>
-        <app-breadcrumb></app-breadcrumb>
-        <div class="layout-content">
-            <router-outlet></router-outlet>
-        </div>
-        <app-footer></app-footer>
-        <div class="layout-main-mask"></div>
-        <div class="layout-config-mask" *ngIf="configDialogActive" [@mask-anim]="'visible'"></div>
-    </div>
-</div> -->

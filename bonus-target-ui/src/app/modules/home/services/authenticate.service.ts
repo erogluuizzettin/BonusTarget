@@ -24,6 +24,10 @@ export class AuthenticationService {
     return this.currentUserSubject.value?.UserName;
   }
 
+  public get currentUser(): User {
+    return this.currentUserSubject.value;
+  }
+
   login(username: string, password: string) {
     return this.http.post<any>(`/users/authenticate`, { username, password })
       .pipe(map(loginResult => {        
@@ -34,11 +38,11 @@ export class AuthenticationService {
           user.FirstName = loginResult.firstname;
           user.LastName = loginResult.lastname;
           user.Token = loginResult.token;
+          user.LastLoggedAt = new Date;
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
-
         return user;
       }));
   }

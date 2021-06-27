@@ -18,14 +18,14 @@
                 </ng-template>
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th style="width: 75px;"></th>
+                        <th style="width: 70px;"></th>
                         <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="width:140px">
                             {{col.header}}
                             <p-sortIcon [field]="col.field"></p-sortIcon>
                         </th>
                     </tr>
                     <tr>
-                        <th style="width: 75px;">
+                        <th style="width: 70px;">
                             <button type="button" pButton class="p-button-primary"
                                 (click)="openEditForm(null, 'Create')">Add</button>
                         </th>
@@ -45,7 +45,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
                     <tr>
-                        <td style="width: 75px;">
+                        <td style="width: 70px;">
                             <button type="button" pButton class="p-button-danger" style="margin-right: 5px;"
                                 (click)="openEditForm(rowData, 'Delete')">Remove</button>
                             <button type="button" pButton class="p-button-secondary"
@@ -55,7 +55,19 @@
                             <span *ngSwitchCase="'decimal'">{{rowData[col.field] | number:'1.0-2'}}</span>
                             <span *ngSwitchCase="'parent'"> <span *ngIf="rowData[col.field]">{{
                                     rowData[col.field] | getName: 'Id': 'Title': dataService.completeList
-                                    }}</span></span>
+                                    }}
+                                </span>
+                            </span>
+                            <span *ngSwitchCase="'salesman'"> <span *ngIf="rowData[col.field]">{{
+                                    rowData[col.field] | getName: 'Id': 'FirstName': salesmanService.completeList
+                                    }}
+                                </span>
+                            </span>
+                            <span *ngSwitchCase="'product'"> <span *ngIf="rowData[col.field]">{{
+                                rowData[col.field] | getName: 'Id': 'Title': productService.completeList
+                                }}
+                            </span>
+                        </span>
                             <span *ngSwitchDefault>{{rowData[col.field]}}</span>
                         </td>
                     </tr>

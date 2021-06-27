@@ -24,7 +24,6 @@ export class ProductListComponent extends ListScreenBase<Product> implements OnI
 
   ngOnInit(): void {
     this.tableColumnDefinitions = [
-      { field: 'Id', header: 'Id', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'int' },
       { field: 'Title', header: 'Title', filter: { type: 'text', matchMode: 'contains', placeholder: 'contains' }, type: 'text' },
       { field: 'CategoryId', header: 'Category', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'category' },
     ];

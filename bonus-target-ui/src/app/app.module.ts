@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardModule } from 'primeng/card';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +20,7 @@ import { BackendHttpInterceptor } from './shared/backend-http-interceptor.servic
 import { MenuComponent } from './theme/menu/menu.component';
 import { MenuItemComponent } from './theme/menu/menu-item/menu-item.component';
 import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { MessageService } from 'primeng/api';
     CardModule,
     FormsModule,
     ReactiveFormsModule,
+    OverlayPanelModule,
+    ButtonModule,
+    FontAwesomeModule
   ],
   providers: [
     {

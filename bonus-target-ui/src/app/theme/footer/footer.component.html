@@ -1,1 +1,17 @@
-<p>footer works!</p>
+<div class="row">
+    <div class="d-none d-md-block col-md-3">
+        Powered By İzzettin and Cem
+    </div>
+    <div class="col-xs-12 col-md-6 text-center">
+        <ng-container *ngIf="authenticationService.userName else notLogged">
+            {{ authenticationService.currentUser.FirstName + ' ' + authenticationService.currentUser.LastName + ' (' + (authenticationService.currentUser.LastLoggedAt | date: 'dd-MM-yyyy hh:mm') + ')' }}
+        </ng-container>
+    </div>
+    <div class="d-none d-md-block col-md-3">
+        
+    </div>
+</div>
+
+<ng-template #notLogged>
+    Not logged in yet
+</ng-template>

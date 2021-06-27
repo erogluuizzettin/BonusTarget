@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { OverlayPanel } from 'primeng/overlaypanel';
 import { AuthenticationService } from 'src/app/modules/home/services/authenticate.service';
 
 @Component({
@@ -7,6 +8,8 @@ import { AuthenticationService } from 'src/app/modules/home/services/authenticat
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('op') op: OverlayPanel;
+  showProfile = false;
 
   constructor(
     public authenticationService: AuthenticationService
@@ -16,7 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.op.hide();
     this.authenticationService.logout();
   }
-
 }

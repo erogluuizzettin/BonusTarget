@@ -4,7 +4,9 @@ import { Table } from 'primeng/table';
 import { EditDialogScreenBase } from 'src/app/core/edit-dialog-screen-base.directive';
 import { ListScreenBase } from 'src/app/core/list-screen-base.directive';
 import { Sales } from '../../../models/sales.model';
+import { ProductService } from '../../../services/product.service';
 import { SalesService } from '../../../services/sales.service';
+import { SalesmanService } from '../../../services/salesman.service';
 
 @Component({
   selector: 'bns-sales-list',
@@ -18,14 +20,15 @@ export class SalesListComponent extends ListScreenBase<Sales> implements OnInit 
   constructor(
     private messageService: MessageService,
     public dataService: SalesService,
+    public salesmanService: SalesmanService,
+    public productService: ProductService
   ) {
     super(messageService);
   }
 
   ngOnInit(): void {
     this.tableColumnDefinitions = [
-      { field: 'Id', header: 'Id', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'int' },
-      { field: 'SalesmanId', header: 'Salesman', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'int' },
+      { field: 'SalesmanId', header: 'Salesman', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'salesman' },
       { field: 'ProductId', header: 'Product', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'product' },
       { field: 'Term', header: 'Term', filter: { type: 'int', matchMode: 'equals', placeholder: 'equals' }, type: 'int' },
       { field: 'Amount', header: 'Amount', filter: { type: 'decimal', matchMode: 'equals', placeholder: 'equals' }, type: 'decimal' },
@@ -43,6 +46,8 @@ export class SalesListComponent extends ListScreenBase<Sales> implements OnInit 
 
   refreshList(): void {
     this.dataService.listAll();
+    this.salesmanService.listAll();
+    this.productService.listAll();
   }
 
   applyFilterGlobal(event: any, filterMatchMode: string) {
