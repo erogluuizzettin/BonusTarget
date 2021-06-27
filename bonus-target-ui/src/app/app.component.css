@@ -1,26 +1,56 @@
+html { height: 100%; }
+body {
+    height:100%;
+    min-height: 100%;
+    background: #000000;
+    color: #FFFFFF;
+    position:relative;
+}
+
 .header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: fixed;
+  top: 0px;
+  left: 200px;
+  right: 0px;
   height: 60px;
+  width:100%;
   display: flex;
+  flex: none;
   align-items: center;
   background-color: #1976d2;
   color: white;
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 .footer {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0px;
+  left: 200px;
+  right: 0px;
   height: 60px;
+  width:100%;
   display: flex;
+  flex: none;
   align-items: center;
   background-color: #1976d2;
   color: white;
-  font-weight: 600;
+  font-weight: 600px;
 }
 
+.screen-container {
+  overflow-y: scroll;
+  flex: auto;
+  height: 100%;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.layout-main {
+  top: 0;
+  left: 200;
+}
+
+.menu {
+  top: 0;
+  left: 0;
+}

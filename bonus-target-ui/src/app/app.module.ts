@@ -17,6 +17,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BackendHttpInterceptor } from './shared/backend-http-interceptor.service';
 import { MenuComponent } from './theme/menu/menu.component';
 import { MenuItemComponent } from './theme/menu/menu-item/menu-item.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MenuItemComponent } from './theme/menu/menu-item/menu-item.component';
       provide: HTTP_INTERCEPTORS,
       useClass: BackendHttpInterceptor,
       multi: true
-    }
+    },
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

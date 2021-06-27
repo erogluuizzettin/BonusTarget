@@ -4,4 +4,5 @@ export class User {
     public FirstName: string; // varying(50) nullable
     public LastName: string; // varying(50) nullable
     public RoleId: number;
+    public Token: string;
 }

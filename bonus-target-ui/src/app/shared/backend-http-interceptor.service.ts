@@ -1,6 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { throwError } from 'rxjs';
 
 const Regions =
   [
@@ -258,7 +259,16 @@ export class BackendHttpInterceptor implements HttpInterceptor {
         case "http://localhost:4200/Home/Role/ListAll":
           return of(new HttpResponse({ status: 200, body: Roles }));
       }
-    } else {
+    }
+    else if (request.method === 'POST') {
+      if (request.url === "/users/authenticate") {
+        if (['cem.ertem', 'aaktas', 'erogluuizzettin'].includes(request.body['username'])) {
+          return of(new HttpResponse({ status: 200, body: { username: request.body['username'], firstName: request.body['firstname'], lastname: request.body['lastname'], token: request.body['username'] } }));
+        }
+        return throwError('Username or password is incorrect');
+      }
+    }
+    else {
       console.log(request.url);
     }
     return next.handle(request)

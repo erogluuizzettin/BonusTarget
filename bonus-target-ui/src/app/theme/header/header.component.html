@@ -1,4 +1,7 @@
-
-<div role="banner">
-    <span>Welcome</span>
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/">Home</a>
+      <a *ngIf="authenticationService.userName" class="nav-item nav-link"><button (click)="logout()">Logout</button></a>
   </div>
+</nav>
