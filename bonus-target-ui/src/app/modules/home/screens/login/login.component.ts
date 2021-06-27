@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { MessageService } from 'primeng/api';
+import { first, finalize } from 'rxjs/operators';
 import { AlertService } from '../../services/alert.service';
 import { AuthenticationService } from '../../services/authenticate.service';
 
@@ -21,10 +22,11 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    public messageService: MessageService 
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
+    if (this.authenticationService.userName) {
       this.router.navigate(['/']);
     }
   }
@@ -52,14 +54,15 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
+      .pipe(first(), finalize(() => this.loading = false))
       .subscribe(
         (data: any) => {
           this.router.navigate([this.returnUrl]);
         },
         (error: any) => {
-          this.alertService.error(error);
-          this.loading = false;
+          console.log(error);
+          // TODO error message operations
+          this.messageService.add({severity:'error', summary:'Warning', detail:error});
         });
   }
 }

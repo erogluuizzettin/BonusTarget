@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/modules/home/services/authenticate.service';
 
 @Component({
   selector: 'bns-header',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.authenticationService.logout();
   }
 
 }

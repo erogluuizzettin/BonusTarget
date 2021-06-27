@@ -1,10 +1,12 @@
-<div class="layout-wrapper layout-menu-light" [ngClass]="{'layout-wrapper-static': true}">
-    <bns-menu #menu></bns-menu>
+<div>
+    <bns-menu class="menu"></bns-menu>
 
-    <bns-header class="header"></bns-header>
     <div class="layout-main">
+        <bns-header class="header"></bns-header>
         <bns-footer class="footer"></bns-footer>
-        <router-outlet></router-outlet>
+        <div class="screen-container">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
 
