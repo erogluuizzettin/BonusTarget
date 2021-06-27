@@ -1,0 +1,67 @@
+<div *ngIf="dataService.loading">
+    <bns-loading-animation></bns-loading-animation>
+</div>
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="card card-w-title">
+            <p-table #dt [columns]="tableColumnDefinitions" [value]="dataService.completeList" [paginator]="true"
+                [rows]="10" dataKey="id" [scrollable]="true" [loading]="dataService.loading">
+                <ng-template pTemplate="caption"> Region List
+                    <div class="p-table-globalfilter-container">
+                        <input type="text" pInputText size="50" placeholder="Genel Filtre"
+                            (input)="applyFilterGlobal($event, 'contains')" style="width:250px;">
+                        <button type="button" pButton icon="pi pi-fw pi-filter" iconPos="left" label="Temizle"
+                            class="p-button-secondary" (click)="dt.reset()"
+                            style="margin-right: 1em; margin-left: 1em;">
+                        </button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th style="width: 65px;"></th>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="width:140px">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width: 65px;">
+                            <button type="button" pButton class="p-button-primary" (click)="openEditForm(null, 'Create')">Add</button>
+                        </th>
+                        <th *ngFor="let col of columns" [ngSwitch]="col.filter.type" style="padding: .5em;">
+                            <input *ngSwitchCase="'text'" pInputText type="text" [placeholder]="col.filter.placeholder"
+                                class="p-column-filter" style="width: 100%; margin-top: 0;"
+                                (input)="applyFilter($event, col.field, col.filter.matchMode)">
+                            <input *ngSwitchCase="'int'" pInputText type="number" [placeholder]="col.filter.placeholder"
+                                class="p-column-filter" style="width: 100%; margin-top: 0;"
+                                (input)="applyFilter($event, col.field, col.filter.matchMode)">
+                            <input *ngSwitchCase="'decimal'" pInputText type="number"
+                                [placeholder]="col.filter.placeholder" class="p-column-filter"
+                                style="width: 100%; margin-top: 0;"
+                                (input)="applyFilter($event, col.field, col.filter.matchMode)">
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td style="width: 65px;">
+                            <button type="button" pButton class="p-button-danger" style="margin-right: 5px;" (click)="openEditForm(rowData, 'Delete')">Remove</button>
+                            <button type="button" pButton class="p-button-secondary" (click)="openEditForm(rowData, 'Update')">Edit</button>
+                        </td>
+                        <td *ngFor="let col of tableColumnDefinitions" [ngSwitch]="col.type" style="width:140px">
+                            <span *ngSwitchCase="'decimal'">{{rowData[col.field] | number:'1.0-2'}}</span>
+                            <span *ngSwitchCase="'parent'"> <span *ngIf="rowData[col.field]">{{
+                                    rowData[col.field] | getName: 'Id': 'Title': dataService.completeList
+                                    }}</span></span>
+                            <span *ngSwitchDefault>{{rowData[col.field]}}</span>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorright" let-state> Total Row Count = {{ state.totalRecords }}
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<bns-region-edit #editForm></bns-region-edit>

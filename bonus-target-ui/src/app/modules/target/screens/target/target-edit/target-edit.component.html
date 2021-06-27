@@ -1,0 +1,64 @@
+<p-dialog header="{{ formActionName + ' Target' }}" [(visible)]="display" [modal]='true' showEffect="fade"
+    [style]="{width: '600px'}">
+    <div *ngIf="!mainForm || progressActive">
+        <bns-loading-animation></bns-loading-animation>
+    </div>
+    <form *ngIf="mainForm" [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+        <div class="p-grid p-fluid">
+            <div class="p-field p-col-12 p-grid">
+                <div class="p-xs-12 p-md-3">
+                    <label for="salesman">Salesman</label>
+                </div>
+                <div class="p-xs-12 p-md-9">
+                    <p-dropdown formControlName="SalesmanId" inputId="salesman" [options]="salesmanService.completeList"
+                        placeholder="Select Salesman" optionLabel="FirstName" dataKey="Id" appendTo="body">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="p-field p-col-12 p-grid">
+                <div class="p-xs-12 p-md-3">
+                    <label for="product">Product</label>
+                </div>
+                <div class="p-xs-12 p-md-9">
+                    <p-dropdown formControlName="ProductId" inputId="product" [options]="productService.completeList"
+                        placeholder="Select Product" optionLabel="Title" dataKey="Id" appendTo="body">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="p-field p-col-12 p-grid">
+                <div class="p-xs-12 p-md-3">
+                    <label for="term">Term</label>
+                </div>
+                <div class="p-xs-12 p-md-9">
+                    <input id="term" formControlName="Term" type="decimal" pInputText
+                        class="p-inputtext p-widget-content">
+                </div>
+            </div>
+            <div class="p-field p-col-12 p-grid">
+                <div class="p-xs-12 p-md-3">
+                    <label for="targetAmount">Target Amount</label>
+                </div>
+                <div class="p-xs-12 p-md-9">
+                    <input id="targetAmount" formControlName="TargetAmount" type="decimal" pInputText
+                        class="p-inputtext p-widget-content">
+                </div>
+            </div>
+            <div class="p-field p-col-12 p-grid">
+                <div class="p-xs-12 p-md-3">
+                    <label for="targetRealization">Target Realization</label>
+                </div>
+                <div class="p-xs-12 p-md-9">
+                    <input id="targetRealization" formControlName="TargetRealization" type="decimal" pInputText
+                        class="p-inputtext p-widget-content">
+                </div>
+            </div>
+        </div>
+    </form>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-times" (click)="hideFormDialog()" [label]="cancelButtonLabel"
+            class="p-button-secondary">
+        </button>
+        <button type="button" pButton icon="pi pi-check" (click)="onSubmit()" [label]="submitButtonLabel">
+        </button>
+    </p-footer>
+</p-dialog>
